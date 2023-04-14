@@ -375,11 +375,13 @@ async def stream_ttsWS(websocket: WebSocket):
             text = await websocket.receive_text()
             # 用 websocket 流式接收音频数据
             if text:
-                for sub_wav in chatbot.text2speechStream(text=text):
-                    # print("发送sub wav: ", len(sub_wav))
-                    res = {"wav": sub_wav, "done": False}
-                    await websocket.send_json(res)
-
+                try:
+                    for sub_wav in chatbot.text2speechStream(text=text):
+                        # print("发送sub wav: ", len(sub_wav))
+                        res = {"wav": sub_wav, "done": False}
+                        await websocket.send_json(res)
+                except Exception as e:
+                    print(e)
                 # 输送结束
                 res = {"wav": sub_wav, "done": True}
                 await websocket.send_json(res)
