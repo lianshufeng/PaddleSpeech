@@ -41,7 +41,7 @@ base = [
     "inflect",
     "jsonlines",
     # paddleaudio align with librosa==0.8.1, which need numpy==1.23.x
-    "numpy==1.23.5",
+    "numpy==1.21.6",
     "librosa==0.10.0",
     "scipy>=1.4.0",
     "loguru",
